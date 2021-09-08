@@ -94,6 +94,10 @@ class AppConfig {
         this.app.use(/*common.ccsrfProtect,*/indexRouter)
         this.app.use(/*common.ccsrfProtect,*/passPortRouter);
         this.app.use(/*common.ccsrfProtect,*/detailtRouter);
+
+        this.app.use((req,res)=>{
+            res.render("news/404")
+        })
     }
 }
 

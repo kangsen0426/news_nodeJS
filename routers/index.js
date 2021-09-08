@@ -1,5 +1,6 @@
 const express = require('express')
 const handleDB = require('../db/handleBD')
+const common = require('../utils/common')
 const router = express.Router()
 
 router.get('/', (req, res) => {
@@ -8,15 +9,8 @@ router.get('/', (req, res) => {
 
         //判断是否登入
 
-        let user_id = req.session['user_id']
+        let result = await common.getUSer(req,res)
 
-        let result = []
-
-        if (user_id) {
-            //表示已经登入,去数据库查询用户的信息
-            result = await handleDB(res, "info_user", "find", "查询数据库出错", `id='${user_id}'`)
-
-        }
 
         //展示首页头部分类信息
         let result2 = await handleDB(res, "info_category", "find", "查询数据库出错", ["name"])

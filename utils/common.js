@@ -1,3 +1,6 @@
+const handleDB = require('../db/handleBD')
+
+
 function getRandomString(n) {
     var str = "";
     while (str.length < n) {
@@ -33,7 +36,25 @@ function csrfProtect(req, res, next) {
 }
 
 
+async function getUSer(req,res){
+
+    let user_id = req.session['user_id']
+
+    let result = []
+
+    if (user_id) {
+        //表示已经登入,去数据库查询用户的信息
+        result = await handleDB(res, "info_user", "find", "查询数据库出错", `id='${user_id}'`)
+
+    }
+
+    return result
+
+}
+
+
 
 module.exports = {
     csrfProtect,
+    getUSer
 }

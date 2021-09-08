@@ -13,7 +13,7 @@ $(function(){
 
     // 收藏
     $(".collection").click(function () {
-        /*
+      
         //获取到新闻编号
         var news_id = $(".collection").attr('data-newid');
         var action = "collect"
@@ -43,7 +43,7 @@ $(function(){
                 }
             }
         })
-       */
+      
     })
 
     // 取消收藏
