@@ -48,7 +48,7 @@ $(function(){
 
     // 取消收藏
     $(".collected").click(function () {
-      /*
+      
         var news_id = $(".collected").attr('data-newid');
         var action = "cancel_collect"
         var params = {
@@ -77,7 +77,7 @@ $(function(){
                 }
             }
         })
-     */
+     
     })
 
         // 评论提交
@@ -95,7 +95,7 @@ $(function(){
                 "news_id": news_id,
                 "comment": news_comment
             };
-            /*
+      
             $.ajax({
                 url: "/news_detail/news_comment",
                 type: "post",
@@ -146,7 +146,7 @@ $(function(){
                     }
                 }
             })
-*/
+
 
     })
 
@@ -169,7 +169,7 @@ $(function(){
         // 点赞处理
         if(sHandler.indexOf('comment_up')>=0)
         {
-            /*
+           
             var $this = $(this);
             var action = "add"
             if(sHandler.indexOf('has_comment_up')>=0)
@@ -228,7 +228,7 @@ $(function(){
                     }
                 }
             })
-            */
+            
         }
 
         // 评论回复

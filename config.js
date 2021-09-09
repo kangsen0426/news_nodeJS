@@ -11,6 +11,8 @@ const common = require('./utils/common')
 const indexRouter = require('./routers/index')
 const passPortRouter = require('./routers/passport')
 const detailtRouter = require('./routers/detail')
+const profileRouter = require('./routers/profile')
+
 
 
 
@@ -94,6 +96,7 @@ class AppConfig {
         this.app.use(/*common.ccsrfProtect,*/indexRouter)
         this.app.use(/*common.ccsrfProtect,*/passPortRouter);
         this.app.use(/*common.ccsrfProtect,*/detailtRouter);
+        this.app.use(/*common.ccsrfProtect,*/profileRouter);
 
         this.app.use((req,res)=>{
             res.render("news/404")

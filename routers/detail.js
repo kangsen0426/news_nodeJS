@@ -112,6 +112,84 @@ router.post("/news_detail/news_collect", (req, res) => {
 
 })
 
+router.post("/news_detail/news_comment", (req, res) => {
+
+    (async function () {
+
+        let result = await common.getUSer(req, res)
+
+        if (!result[0]) {
+            res.send({ errno: 4101, errmsg: "用户未登入" })
+            return
+        }
+
+        console.log(req.body);
+
+        let { news_id, comment,parent_id=null } = req.body;
+
+        if (!news_id || !comment) {
+            res.send({ errmsg: "参数错误1" })
+            return
+        }
+
+        let newsResult = await handleDB(res, "info_news", "find", "查询数据库出错", `id=${news_id}`)
+
+        if (!newsResult[0]) {
+            res.send({ errmsg: "参数错误2" })
+            return
+        }
+
+        let commentObj = { user_id: result[0].id, news_id ,content:comment}
+
+        if(parent_id){
+            commentObj.parent_id = parent_id
+        }
+
+        await handleDB(res, "info_comment", "insert", "数据库添加出错", commentObj)
+
+
+        res.send({ errno: "0" ,errmsg:"操作成功"})
+
+
+    })()
+
+})
+
+
+router.post("/news_detail/comment_like", (req, res) => {
+
+    (async function () {
+
+        let result = await common.getUSer(req, res)
+
+        if (!result[0]) {
+            res.send({ errno: 4101, errmsg: "用户未登入" })
+            return
+        }
+
+        console.log(req.body);
+
+        let { action, comment_id } = req.body;
+
+        console.log(req.body);
+
+        let commentResult = await handleDB(res, "info_comment", "find", "查询数据库出错", `id=${comment_id}`)
+
+        if (!commentResult[0]) {
+            res.send({ errmsg: "参数错误2" })
+            return
+        }
+
+
+
+       
+
+
+    })()
+
+})
+
+
 
 
 
